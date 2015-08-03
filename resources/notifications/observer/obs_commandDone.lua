@@ -52,26 +52,55 @@ end
 function triggerNotification(savedConfig)
 	runtimeConfig.unitsToSelect = {}
 
+	-- checking for dead units
+	local deadUnits = 0
 	for id, u in checkedUnits do
 		if u.unit:IsDead() then
+			runtimeConfig.icons[2] = {
+				icon= u.icon,
+				isModFile=false
+			}
+
 			checkedUnits[id] = nil
+			deadUnits = deadUnits + 1
+		end
+	end
+
+	if deadUnits > 0 then
+		if deadUnits > 1 then
+			runtimeConfig.text = deadUnits.."units died"
+			runtimeConfig.subtext = "before completing their order"
 		else
-			local amount = table.getn(u.unit:GetCommandQueue())
-			for i, l in u.checkedList do
-				l.tasksLeft = amount - l.followedTasks
+			runtimeConfig.text = "One unit died"
+			runtimeConfig.subtext = "before completing its order"
+		end
+		return true
+	end
 
-				LOG('left: '..l.tasksLeft..', total: '..amount)
+	-- checking for units which completed their task
+	for id, u in checkedUnits do
+		local amount = table.getn(u.unit:GetCommandQueue())
+		for i, l in u.checkedList do
+			l.tasksLeft = amount - l.followedTasks
 
-				if l.tasksLeft <= 0 then
-					u.checkedList[i] = nil
-					table.insert(runtimeConfig.unitsToSelect, u.unit)
-				end
+			if l.tasksLeft <= 0 then
+				u.checkedList[i] = nil
+				table.insert(runtimeConfig.unitsToSelect, u.unit)
 			end
+		end
+
+		local ordersLeft = 0
+		for _, __ in u.checkedList do
+			ordersLeft = ordersLeft + 1
+		end
+		if ordersLeft < 1 then
+			checkedUnits[id] = nil
 		end
 	end
 
 	local numSelected = table.getn(runtimeConfig.unitsToSelect)
 	if numSelected > 0 then
+		runtimeConfig.text = "Command executed"
 		if numSelected > 1 then
 			runtimeConfig.subtext = numSelected.." units executed their order"
 		else
@@ -99,6 +128,7 @@ function onAddCommand()
 		if not checkedUnits[u:GetEntityId()] then
 			checkedUnits[u:GetEntityId()] = {
 				unit = u,
+				icon = u:GetBlueprint().BlueprintId..'_icon.dds',
 				checkedList = {}
 			}
 		end

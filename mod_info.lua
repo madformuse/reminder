@@ -1,9 +1,9 @@
-name = "Notifications v4.4"
-version = 4.4
+name = "Notifications v4.5"
+version = 4.5
 copyright = "Feel free to add, take, change or delete code, or publish variations. Icon rights belong to Blackster."
 description = "extensible notification mod"
 author = "Myxir"
-uid = "0faf3443-1122-633s-ya-V00000004004"
+uid = "0faf3443-1122-633s-ya-V00000004005"
 url = "http://forums.faforever.com/forums/viewtopic.php?f=41&t=9432&sid=c8232dc40385810b14971aa1bb9a3b1a"
 icon = "/mods/reminder/bubble.png"
 identifier = ""

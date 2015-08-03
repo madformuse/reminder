@@ -118,12 +118,12 @@ function createOptions(parent, posY)
 	local curX = 0
 	
 	-- isDraggable
-	LayoutHelpers.AtLeftTopIn(UIUtil.CreateText(parent, "buttons can be dragged", uiPanelSettings.textSize.option, UIUtil.bodyFont), parent, curX+30, curY)
+	LayoutHelpers.AtLeftTopIn(UIUtil.CreateText(parent, "main buttons can be dragged", uiPanelSettings.textSize.option, UIUtil.bodyFont), parent, curX+30, curY)
 	createSettingCheckbox(parent, curPrefs, curX+10, curY+2, 13, {"global", "isDraggable"})
 	curY = curY + uiPanelSettings.options.height + uiPanelSettings.options.distance
 	
 	-- isButtonsOnlyOnMouseover
-	LayoutHelpers.AtLeftTopIn(UIUtil.CreateText(parent, "buttons hidden until mouseover", uiPanelSettings.textSize.option, UIUtil.bodyFont), parent, curX+30, curY)
+	LayoutHelpers.AtLeftTopIn(UIUtil.CreateText(parent, "main buttons hidden until cursor is over", uiPanelSettings.textSize.option, UIUtil.bodyFont), parent, curX+30, curY)
 	createSettingCheckbox(parent, curPrefs, curX+10, curY+2, 13, {"global", "isButtonsOnlyOnMouseover"})
 	curY = curY + uiPanelSettings.options.height + uiPanelSettings.options.distance
 	
@@ -134,24 +134,24 @@ function createOptions(parent, posY)
 	LayoutHelpers.AtLeftTopIn(UIUtil.CreateText(parent, "allow quick minimizing", uiPanelSettings.textSize.option, UIUtil.bodyFont), parent, curX+30, curY)
 	createSettingCheckbox(parent, curPrefs, curX+10, curY+2, 13, {"global", "isMinimizable"})
 	curY = curY + uiPanelSettings.options.height + uiPanelSettings.options.distance
-
-	-- isVisible
-	LayoutHelpers.AtLeftTopIn(UIUtil.CreateText(parent, "notifications are visible", uiPanelSettings.textSize.option, UIUtil.bodyFont), parent, curX+30, curY)
-	createSettingCheckbox(parent, curPrefs, curX+10, curY+2, 13, {"global", "isVisible"})
-	curY = curY + uiPanelSettings.options.height + uiPanelSettings.options.distance
 	
 	-- isButtonsSetLeft
-	LayoutHelpers.AtLeftTopIn(UIUtil.CreateText(parent, "buttons on left side", uiPanelSettings.textSize.option, UIUtil.bodyFont), parent, curX+30, curY)
+	LayoutHelpers.AtLeftTopIn(UIUtil.CreateText(parent, "main buttons located on left side", uiPanelSettings.textSize.option, UIUtil.bodyFont), parent, curX+30, curY)
 	createSettingCheckbox(parent, curPrefs, curX+10, curY+2, 13, {"global", "isButtonsSetLeft"})
 	curY = curY + uiPanelSettings.options.height + uiPanelSettings.options.distance	
 	
 	-- isNotificationsToPositiveX
-	LayoutHelpers.AtLeftTopIn(UIUtil.CreateText(parent, "notifications below buttons", uiPanelSettings.textSize.option, UIUtil.bodyFont), parent, curX+30, curY)
+	LayoutHelpers.AtLeftTopIn(UIUtil.CreateText(parent, "notifications located below main buttons", uiPanelSettings.textSize.option, UIUtil.bodyFont), parent, curX+30, curY)
 	createSettingCheckbox(parent, curPrefs, curX+10, curY+2, 13, {"global", "isNotificationsToPositiveX"})
 	curY = curY + uiPanelSettings.options.height + uiPanelSettings.options.distance	
 
 	--
 	curY = curY + (uiPanelSettings.options.height + uiPanelSettings.options.distance)/2
+
+	-- isVisible
+	LayoutHelpers.AtLeftTopIn(UIUtil.CreateText(parent, "notifications are visible", uiPanelSettings.textSize.option, UIUtil.bodyFont), parent, curX+30, curY)
+	createSettingCheckbox(parent, curPrefs, curX+10, curY+2, 13, {"global", "isVisible"})
+	curY = curY + uiPanelSettings.options.height + uiPanelSettings.options.distance
 	
 	-- isClickEvent
 	LayoutHelpers.AtLeftTopIn(UIUtil.CreateText(parent, "allow click events", uiPanelSettings.textSize.option, UIUtil.bodyFont), parent, curX+30, curY)
@@ -178,7 +178,7 @@ function createOptions(parent, posY)
 	createSettingsSliderWithText(parent, curPrefs, curX, curY, "min retrigger delay: ", uiPanelSettings.width/2, 1, 24, 5, {"global", "minRetriggerDelay"})
 	curY = curY + 2.5*(uiPanelSettings.options.height + uiPanelSettings.options.distance)
 	
-	createSettingsSliderWithText(parent, curPrefs, curX, curY, "start delay (next game): ", uiPanelSettings.width/2, 1, 20, 30, {"global", "startDelay"})
+	createSettingsSliderWithText(parent, curPrefs, curX, curY, "mod startup time (next game): ", uiPanelSettings.width/2, 1, 20, 30, {"global", "startDelay"})
 	curY = curY + 2.5*(uiPanelSettings.options.height + uiPanelSettings.options.distance)
 	
 	createSettingsSliderWithText(parent, curPrefs, curX, curY, "UI size (next game): ", uiPanelSettings.width/2, 1, notificationSizes.getMaxSize(), 1, {"global", "uiSize"})
