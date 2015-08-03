@@ -1,4 +1,4 @@
-local reminder_observerLayer = import("/mods/reminder/modules/notificationreminder_observerLayer.lua")
+local reminder_observerLayer = import("/mods/reminder/modules/notificationObserverLayer.lua")
 local oldOnCommandIssued = OnCommandIssued
 
 function OnCommandIssued(command)

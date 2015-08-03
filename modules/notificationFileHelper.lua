@@ -44,11 +44,13 @@ function loadNotificationsInList(list, notificationType)
 		-- settings for this notification
 		if prefs.notification[cur].preferences == nil then
 			allNotificationsInList[cur].preferences = {}
-			for _, preferenceTable in import(cur).getDefaultConfig() or {} do
+		end
+		for _, preferenceTable in import(cur).getDefaultConfig() or {} do
+			if not allNotificationsInList[cur].preferences[preferenceTable.path] then
 				allNotificationsInList[cur].preferences[preferenceTable.path] = preferenceTable.value
 			end
-			notificationPrefs.setNotificationPreferences(cur, allNotificationsInList[cur].preferences)
 		end
+		notificationPrefs.setNotificationPreferences(cur, allNotificationsInList[cur].preferences)
 
 		if notificationType == "TIMED" or notificationType == "CONDITIONALTIMED" then
 			allNotificationsInList[cur].nextTrigger = allNotificationsInList[cur].preferences["triggerAtSeconds"]

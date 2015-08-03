@@ -1,5 +1,5 @@
 local reminder_modpath = "/mods/reminder"
-local reminder_selectHelper = import(reminder_modpath..'/modules/reminder_selectHelper.lua')
+local reminder_selectHelper = import(reminder_modpath..'/modules/selectHelper.lua')
 
 local originalCreateUI = CreateUI 
 local originalOnSelectionChanged = OnSelectionChanged
