@@ -74,6 +74,7 @@ function triggerNotification(savedConfig)
 			runtimeConfig.text = "One unit died"
 			runtimeConfig.subtext = "before completing its order"
 		end
+		runtimeConfig.icons[3] = {icon='abstract/attacked.png', isModFile=true}
 		return true
 	end
 
@@ -112,6 +113,7 @@ function triggerNotification(savedConfig)
 			icon= runtimeConfig.unitsToSelect[1]:GetBlueprint().BlueprintId..'_icon.dds',
 			isModFile=false
 		}
+		runtimeConfig.icons[3] = nil
 		return true
 	end
 

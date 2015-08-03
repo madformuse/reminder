@@ -65,6 +65,22 @@ function getFaction()
 end
 
 
+function getLowestTechUnitsInGroup(group)
+	local cats = {[1] = "TECH1", [2] = "TECH2", [3] = "TECH3"}
+	local lowestTechUnits = {}
+	for _, c in cats do
+		for _, u in group do
+			if u:IsInCategory(c) then
+				table.insert(lowestTechUnits, u)
+			end
+		end
+		if table.getn(lowestTechUnits) > 0 then
+			return lowestTechUnits
+		end
+	end
+end
+
+
 function Reset()
 	local currentlySelected = GetSelectedUnits() or {}
 	isAutoSelection = true

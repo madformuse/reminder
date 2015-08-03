@@ -40,20 +40,20 @@ function triggerNotification(savedConfig)
 	for id,v in allFactories do
 		if(v.unit:IsDead()) then
 			-- same position as another unit? - upgrade done! - else dead
-			local unitWithSamePosition = nil
+			local unitsWithSamePosition = {}
 			for id2, v2 in allFactories do
 				if (id ~= id2) then
 					if (v.position[1] == v2.position[1] and v.position[3] == v2.position[3]) then
-						unitWithSamePosition = v2.unit
+						table.insert(unitsWithSamePosition, v2.unit)
 						break
 					end
 				end
 			end
 			
-			if(unitWithSamePosition ~= nil) then
+			if table.getn(unitsWithSamePosition) > 0 then
 				-- upgrade finished
-				if(setRuntimeConfig(unitWithSamePosition)) then
-					runtimeConfig.unitsToSelect = {unitWithSamePosition}
+				if(setRuntimeConfig(selectHelper.getLowestTechUnitsInGroup(unitsWithSamePosition)[1])) then
+					runtimeConfig.unitsToSelect = {selectHelper.getLowestTechUnitsInGroup(unitsWithSamePosition)[1]}
 					notificationIsReady = true
 				end
 			end

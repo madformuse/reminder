@@ -39,6 +39,9 @@ function triggerNotification(savedConfig)
 	runtimeConfig.unitsToSelect = {}
 	
 	for _,u in selectHelper.getAllUnits() do
+		if u:IsDead() then 
+			continue
+		end
 		if(u:IsInCategory("TACTICALMISSILEPLATFORM") )then
 			if(u:IsInCategory("STRUCTURE") )then
 				info = u:GetMissileInfo()

@@ -97,7 +97,7 @@ function triggerNotification(savedConfig)
 	local acuCurHealth = acu:GetHealth()
 	
 	if(( (acuCurHealth+((savedConfig.warnAtPercentageInStrike*acuMaxHealth))/100) < curPrevHp)
-		or ((curPrevShield+0.03*acuMaxHealth) < curPrevShield )) then
+		or ((curPrevShield+savedConfig.warnAtPercentageInStrike*acuMaxHealth) < curPrevShield )) then
 		avg1s = 0
 		setSubtext()
 		return true
