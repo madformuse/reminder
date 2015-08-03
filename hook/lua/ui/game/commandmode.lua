@@ -1,7 +1,7 @@
-local observerLayer = import("/mods/reminder/modules/notificationObserverLayer.lua")
+local reminder_observerLayer = import("/mods/reminder/modules/notificationreminder_observerLayer.lua")
 local oldOnCommandIssued = OnCommandIssued
 
 function OnCommandIssued(command)
 	oldOnCommandIssued(command)
-	ForkThread(observerLayer.onOnCommandIssued, command)
+	ForkThread(reminder_observerLayer.onOnCommandIssued, command)
 end

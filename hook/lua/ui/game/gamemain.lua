@@ -1,12 +1,12 @@
 local reminder_modpath = "/mods/reminder"
-local selectHelper = import(reminder_modpath..'/modules/selectHelper.lua')
+local reminder_selectHelper = import(reminder_modpath..'/modules/reminder_selectHelper.lua')
 
 local originalCreateUI = CreateUI 
 local originalOnSelectionChanged = OnSelectionChanged
 
 
 function OnSelectionChanged(oldSelection, newSelection, added, removed)
-	if not selectHelper.IsAutoSelection() then
+	if not reminder_selectHelper.IsAutoSelection() then
 		originalOnSelectionChanged(oldSelection, newSelection, added, removed)
 	end
 end
@@ -17,7 +17,7 @@ function CreateUI(isReplay)
 	if not isReplay then
 		import(reminder_modpath..'/modules/notificationPrefs.lua').init()
 		import(reminder_modpath..'/modules/notificationUi.lua').init()
-		AddBeatFunction(selectHelper.UpdateAllUnits)
+		AddBeatFunction(reminder_selectHelper.UpdateAllUnits)
 		ForkThread(import(reminder_modpath..'/modules/notificationMain.lua').init)
 	end
 end
