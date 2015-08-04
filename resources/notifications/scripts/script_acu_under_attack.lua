@@ -1,5 +1,5 @@
 local modpath = "/mods/reminder"
-local selectHelper = import(modpath..'/modules/selectHelper.lua')
+local units = import('/mods/common/units.lua')
 local getEnh = import('/lua/enhancementcommon.lua')
 
 
@@ -49,7 +49,7 @@ local previousShield = 0
 local curPrevShield = 0
 
 function init()
-	for _,u in selectHelper.getAllUnits() do
+	for _,u in units.Get() do
 		if(u:IsInCategory("COMMAND") )then
 			acu = u
 			previousHp = acu:GetHealth()

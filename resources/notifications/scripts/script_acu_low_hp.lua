@@ -1,5 +1,5 @@
 local modpath = "/mods/reminder"
-local selectHelper = import(modpath..'/modules/selectHelper.lua')
+local units = import('/mods/common/units.lua')
 
 
 function getDefaultConfig()
@@ -33,7 +33,7 @@ local acu = nil
 
 
 function init()
-	for _,u in selectHelper.getAllUnits() do
+	for _,u in units.Get() do
 		if(u:IsInCategory("COMMAND") )then
 			acu = u
 			if u:IsInCategory("AEON") then

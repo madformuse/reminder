@@ -1,5 +1,6 @@
 local modpath = "/mods/reminder"
-local selectHelper = import(modpath..'/modules/selectHelper.lua')
+local utils = import(modpath..'/modules/notificationUtils.lua')
+local units = import('/mods/common/units.lua')
 
 
 function getDefaultConfig()
@@ -23,7 +24,7 @@ local t3Icon = nil
 
 
 function init()
-	local faction = selectHelper.getFaction()
+	local faction = utils.getFaction()
 	if faction == "UEF" then
 		t2Icon = {icon='UEB1202_icon.dds', isModFile=false}
 		t3Icon = {icon='UEB1302_icon.dds', isModFile=false}
@@ -45,7 +46,7 @@ function triggerNotification(savedConfig)
 	runtimeConfig.unitsToSelect = {}
 
 	-- add all new existing factories
-	for _,u in selectHelper.getAllUnits() do
+	for _,u in units.Get() do
 		if not u:IsDead() then
 			if(u:IsInCategory("MASSEXTRACTION") and u:IsInCategory("STRUCTURE"))then
 				if(allExtractors[u:GetEntityId()] == nil) then
@@ -71,7 +72,7 @@ function triggerNotification(savedConfig)
 			
 			if table.getn(unitsWithSamePosition) > 0 then
 				-- upgrade finished
-				table.insert(runtimeConfig.unitsToSelect, selectHelper.getLowestTechUnitsInGroup(unitsWithSamePosition)[1] )
+				table.insert(runtimeConfig.unitsToSelect, utils.getLowestTechUnitsInGroup(unitsWithSamePosition)[1] )
 			end
 			
 			allExtractors[id] = nil

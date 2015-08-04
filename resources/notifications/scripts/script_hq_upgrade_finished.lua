@@ -1,5 +1,6 @@
 local modpath = "/mods/reminder"
-local selectHelper = import(modpath..'/modules/selectHelper.lua')
+local utils = import(modpath..'/modules/notificationUtils.lua')
+local units = import('/mods/common/units.lua')
 
 
 function getDefaultConfig()
@@ -28,7 +29,7 @@ function triggerNotification(savedConfig)
 	local notificationIsReady = false
 
 	-- add all new existing factories
-	for _,u in selectHelper.getAllUnits() do
+	for _,u in units.Get() do
 		if(u:IsInCategory("FACTORY") and u:IsInCategory("STRUCTURE"))then
 			if(allFactories[u:GetEntityId()] == nil) then
 				allFactories[u:GetEntityId()] = {unit = u, position = u:GetPosition()}
@@ -52,8 +53,8 @@ function triggerNotification(savedConfig)
 			
 			if table.getn(unitsWithSamePosition) > 0 then
 				-- upgrade finished
-				if(setRuntimeConfig(selectHelper.getLowestTechUnitsInGroup(unitsWithSamePosition)[1])) then
-					runtimeConfig.unitsToSelect = {selectHelper.getLowestTechUnitsInGroup(unitsWithSamePosition)[1]}
+				if(setRuntimeConfig(utils.getLowestTechUnitsInGroup(unitsWithSamePosition)[1])) then
+					runtimeConfig.unitsToSelect = {utils.getLowestTechUnitsInGroup(unitsWithSamePosition)[1]}
 					notificationIsReady = true
 				end
 			end

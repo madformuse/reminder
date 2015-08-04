@@ -1,5 +1,5 @@
 local modpath = "/mods/reminder"
-local selectHelper = import(modpath..'/modules/selectHelper.lua')
+local utils = import(modpath..'/modules/notificationUtils.lua')
 
 function getDefaultConfig()
 	return {
@@ -40,7 +40,7 @@ local runtimeConfig = {
 }
 function getRuntimeConfig()
 	if not runtimeConfig.icons[2] then
-		local faction = selectHelper.getFaction()
+		local faction = utils.getFaction()
 		if faction == "UEF" then
 			runtimeConfig.icons[2] = {icon='UEB4302_icon.dds', isModFile=false}
 		elseif faction == "AEON" then

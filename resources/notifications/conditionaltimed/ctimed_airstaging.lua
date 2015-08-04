@@ -1,5 +1,6 @@
 local modpath = "/mods/reminder"
-local selectHelper = import(modpath..'/modules/selectHelper.lua')
+local utils = import(modpath..'/modules/notificationUtils.lua')
+local units = import('/mods/common/units.lua')
 
 function getDefaultConfig()
 	return {
@@ -39,7 +40,7 @@ local runtimeConfig = {
 }
 function getRuntimeConfig()
 	if not runtimeConfig.icons[2] then
-		local faction = selectHelper.getFaction()
+		local faction = utils.getFaction()
 		if faction == "UEF" then
 			runtimeConfig.icons[2] = {icon='UEB5202_icon.dds', isModFile=false}
 		elseif faction == "AEON" then
@@ -56,7 +57,7 @@ end
 
 
 function triggerNotification(savedConfig)
-	for _,u in selectHelper.getAllUnits() do
+	for _,u in units.Get() do
 		if(u:IsInCategory("AIRSTAGINGPLATFORM") and u:IsInCategory("STRUCTURE")) then
 			return false
 		end

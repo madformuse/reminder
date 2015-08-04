@@ -1,5 +1,6 @@
 local modpath = "/mods/reminder"
-local selectHelper = import(modpath..'/modules/selectHelper.lua')
+local utils = import(modpath..'/modules/notificationUtils.lua')
+local units = import('/mods/common/units.lua')
 
 function getDefaultConfig()
 	return {
@@ -40,7 +41,7 @@ local runtimeConfig = {
 }
 function getRuntimeConfig()
 	if not runtimeConfig.icons[2] then
-		local faction = selectHelper.getFaction()
+		local faction = utils.getFaction()
 		if faction == "UEF" then
 			runtimeConfig.icons[2] = {icon='UEA0302_icon.dds', isModFile=false}
 		elseif faction == "AEON" then
@@ -58,7 +59,7 @@ end
 
 function getUnitsToSelect()
 	runtimeConfig.unitsToSelect = {}
-	for _,u in selectHelper.getAllUnits() do
+	for _,u in units.Get() do
 		if(u:IsInCategory("AIR") and u:IsInCategory("INTELLIGENCE") )then
 			if(u:IsIdle())then
 				table.insert(runtimeConfig.unitsToSelect, u)

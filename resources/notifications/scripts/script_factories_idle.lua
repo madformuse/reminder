@@ -1,5 +1,4 @@
 local modpath = "/mods/reminder"
-local selectHelper = import(modpath..'/modules/selectHelper.lua')
 
 
 function getDefaultConfig()

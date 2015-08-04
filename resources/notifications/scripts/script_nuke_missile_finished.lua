@@ -1,5 +1,4 @@
-local modpath = "/mods/reminder"
-local selectHelper = import(modpath..'/modules/selectHelper.lua')
+local units = import('/mods/common/units.lua')
 
 
 function getDefaultConfig()
@@ -30,7 +29,7 @@ function triggerNotification(savedConfig)
 	local currentMissilesMobile = 0
 	runtimeConfig.unitsToSelect = {}
 	
-	for _,u in selectHelper.getAllUnits() do
+	for _,u in units.Get() do
 		if(u:IsInCategory("NUKE") )then
 			info = u:GetMissileInfo()
 			if(u:IsInCategory("STRUCTURE") )then

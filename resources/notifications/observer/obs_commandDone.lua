@@ -1,5 +1,4 @@
 local modpath = "/mods/reminder"
-local selectHelper = import(modpath..'/modules/selectHelper.lua')
 local observerLayer = import(modpath.."/modules/notificationObserverLayer.lua")
 
 

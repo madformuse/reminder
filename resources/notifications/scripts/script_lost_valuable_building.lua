@@ -1,5 +1,6 @@
 local modpath = "/mods/reminder"
-local selectHelper = import(modpath..'/modules/selectHelper.lua')
+local utils = import(modpath..'/modules/notificationUtils.lua')
+local units = import('/mods/common/units.lua')
 
 
 function getDefaultConfig()
@@ -35,7 +36,7 @@ local prevOmnis = 0
 
 
 function init()
-	local faction = selectHelper.getFaction()
+	local faction = utils.getFaction()
 	if faction == "UEF" then
 		omniIcon = {icon='UEB3104_icon.dds', isModFile=false}
 		smdIcon = {icon='UEB4302_icon.dds', isModFile=false}
@@ -59,7 +60,7 @@ function triggerNotification(savedConfig)
 	
 	-- smds
 	if savedConfig.checkSMD == true then
-		for _,u in selectHelper.getAllUnits() do
+		for _,u in units.Get() do
 			if(u:IsInCategory("ANTIMISSILE") and u:IsInCategory("TECH3") and u:IsInCategory("STRUCTURE"))then
 				smds = smds +1
 			end	
@@ -80,7 +81,7 @@ function triggerNotification(savedConfig)
 	
 	-- t3 radar
 	if savedConfig.checkOmni == true then
-		for _,u in selectHelper.getAllUnits() do
+		for _,u in units.Get() do
 			if(u:IsInCategory("OMNI") and u:IsInCategory("STRUCTURE") )then
 				omnis = omnis +1
 			end	

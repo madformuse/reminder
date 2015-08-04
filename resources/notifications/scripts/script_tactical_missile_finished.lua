@@ -1,5 +1,6 @@
 local modpath = "/mods/reminder"
-local selectHelper = import(modpath..'/modules/selectHelper.lua')
+local utils = import(modpath..'/modules/notificationUtils.lua')
+local units = import('/mods/common/units.lua')
 
 
 function getDefaultConfig()
@@ -21,7 +22,7 @@ local missileCountStationary = 0
 
 
 function init()
-	local faction = selectHelper.getFaction()
+	local faction = utils.getFaction()
 	if faction == "UEF" then
 		runtimeConfig.icons[2] = {icon='UEB2108_icon.dds', isModFile=false}
 	elseif faction == "AEON" then
@@ -38,7 +39,7 @@ function triggerNotification(savedConfig)
 	local currentMissilesStationary = 0
 	runtimeConfig.unitsToSelect = {}
 	
-	for _,u in selectHelper.getAllUnits() do
+	for _,u in units.Get() do
 		if u:IsDead() then 
 			continue
 		end
