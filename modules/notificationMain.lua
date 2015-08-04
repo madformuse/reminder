@@ -99,7 +99,7 @@ function triggerNotificationChecks()
 				if(n.nextTrigger < gameTime) then
 					handleNotification(n)
 					if (savedPrefs.notification[n.id].preferences.canRetrigger == true) then
-						n.nextTrigger = n.nextTrigger + math.max(globalRetriggerDelay, savedPrefs.notification[n.id].preferences.retriggerDelay)
+						n.nextTrigger = gameTime + math.max(globalRetriggerDelay, savedPrefs.notification[n.id].preferences.retriggerDelay)
 					else
 						allTimedNotifications[i] = nil
 					end
@@ -115,7 +115,7 @@ function triggerNotificationChecks()
 					if(import(n.id).triggerNotification(savedPrefs.notification[n.id].preferences)) then
 						handleNotification(n)
 						if (savedPrefs.notification[n.id].preferences.canRetrigger == true) then
-							n.nextTrigger = n.nextTrigger + math.max(globalRetriggerDelay, savedPrefs.notification[n.id].preferences.retriggerDelay)
+							n.nextTrigger = gameTime + math.max(globalRetriggerDelay, savedPrefs.notification[n.id].preferences.retriggerDelay)
 						else
 							allConditionalTimedNotifications[i] = nil
 						end
@@ -139,10 +139,11 @@ function handleNotification(notification)
 	local runtimeConfig = import(notification.id).getRuntimeConfig()
 
 	-- sound
+	-- requires a runtimeConfig.sound = {sound = pathToFile, isModFile=false} styled input
 	if( savedPrefs.global.isPlaySound and savedPrefs.notification[notification.id].states.isPlaySound == true ) then
 		local sound = runtimeConfig.sound
 		if not ((sound == false) or (sound == nil)) then
-			PlaySound(sound)
+			PlaySound(notificationFileHelper.getSound(sound.sound, sound.isModFile))
 		end
 	end
 

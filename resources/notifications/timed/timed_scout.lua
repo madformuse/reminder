@@ -53,18 +53,18 @@ function getRuntimeConfig()
 		end
 	end
 
+	setUnitsToSelect()
 	return runtimeConfig
 end
 
 
-function getUnitsToSelect()
+function setUnitsToSelect()
 	runtimeConfig.unitsToSelect = {}
 	for _,u in units.Get(categories.AIR) do
-		if(u:IsInCategory("INTELLIGENCE") )then
+		if(u:IsInCategory("INTELLIGENCE"))then
 			if(u:IsIdle())then
 				table.insert(runtimeConfig.unitsToSelect, u)
 			end
 		end	
 	end
-	return runtimeConfig.unitsToSelect
 end

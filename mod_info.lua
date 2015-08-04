@@ -1,7 +1,7 @@
 name = "Notifications v5.0"
 version = 5.0
 copyright = "Feel free to add, take, change or delete code, or publish variations. Icon rights belong to Blackster."
-description = "extensible notification mod"
+description = "extensible notification mod, requires common mod tools v1"
 author = "Myxir"
 uid = "0faf3443-1122-633s-ya-V00000005000"
 url = "http://forums.faforever.com/forums/viewtopic.php?f=41&t=9432&sid=c8232dc40385810b14971aa1bb9a3b1a"

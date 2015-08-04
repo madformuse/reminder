@@ -71,4 +71,13 @@ function getTexture(resourceName, path, isModFile)
 end
 
 
+function getSound(resource, isModFile)
+	if isModFile then
+		return nil --not supported yet
+	end
+	
+	return resource
+end
+
+
 
