@@ -29,8 +29,8 @@ function triggerNotification(savedConfig)
 	local notificationIsReady = false
 
 	-- add all new existing factories
-	for _,u in units.Get() do
-		if(u:IsInCategory("FACTORY") and u:IsInCategory("STRUCTURE"))then
+	for _,u in units.Get(categories.FACTORY) do
+		if(u:IsInCategory("STRUCTURE"))then
 			if(allFactories[u:GetEntityId()] == nil) then
 				allFactories[u:GetEntityId()] = {unit = u, position = u:GetPosition()}
 			end

@@ -29,18 +29,16 @@ function triggerNotification(savedConfig)
 	local currentMissilesMobile = 0
 	runtimeConfig.unitsToSelect = {}
 	
-	for _,u in units.Get() do
-		if(u:IsInCategory("NUKE") )then
-			info = u:GetMissileInfo()
-			if(u:IsInCategory("STRUCTURE") )then
-				currentMissilesStationary = currentMissilesStationary + info.nukeSiloStorageCount
-			else
-				currentMissilesMobile = currentMissilesMobile + info.nukeSiloStorageCount
-			end
-			
-			if( info.nukeSiloStorageCount > 0 ) then
-				table.insert(runtimeConfig.unitsToSelect, u)
-			end
+	for _,u in units.Get(categories.NUKE) do
+		info = u:GetMissileInfo()
+		if(u:IsInCategory("STRUCTURE") )then
+			currentMissilesStationary = currentMissilesStationary + info.nukeSiloStorageCount
+		else
+			currentMissilesMobile = currentMissilesMobile + info.nukeSiloStorageCount
+		end
+		
+		if( info.nukeSiloStorageCount > 0 ) then
+			table.insert(runtimeConfig.unitsToSelect, u)
 		end
 	end
 	

@@ -57,8 +57,8 @@ end
 
 
 function triggerNotification(savedConfig)
-	for _,u in units.Get() do
-		if(u:IsInCategory("AIRSTAGINGPLATFORM") and u:IsInCategory("STRUCTURE")) then
+	for _,u in units.Get(categories.AIRSTAGINGPLATFORM) do
+		if(u:IsInCategory("STRUCTURE")) then
 			return false
 		end
 	end

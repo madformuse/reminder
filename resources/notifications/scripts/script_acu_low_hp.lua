@@ -33,16 +33,14 @@ local acu = nil
 
 
 function init()
-	for _,u in units.Get() do
-		if(u:IsInCategory("COMMAND") )then
-			acu = u
-			if u:IsInCategory("AEON") then
-				runtimeConfig.icons[2] = {icon='UAL0001_icon.dds', isModFile=false}
-			elseif u:IsInCategory("CYBRAN") then
-				runtimeConfig.icons[2] = {icon='URL0001_icon.dds', isModFile=false}
-			elseif u:IsInCategory("SERAPHIM") then
-				runtimeConfig.icons[2] = {icon='XSL0001_icon.dds', isModFile=false}
-			end
+	for _,u in units.Get(categories.COMMAND) do
+		acu = u
+		if u:IsInCategory("AEON") then
+			runtimeConfig.icons[2] = {icon='UAL0001_icon.dds', isModFile=false}
+		elseif u:IsInCategory("CYBRAN") then
+			runtimeConfig.icons[2] = {icon='URL0001_icon.dds', isModFile=false}
+		elseif u:IsInCategory("SERAPHIM") then
+			runtimeConfig.icons[2] = {icon='XSL0001_icon.dds', isModFile=false}
 		end
 	end
 	runtimeConfig.unitsToSelect = {acu}

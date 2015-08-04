@@ -59,8 +59,8 @@ end
 
 function getUnitsToSelect()
 	runtimeConfig.unitsToSelect = {}
-	for _,u in units.Get() do
-		if(u:IsInCategory("AIR") and u:IsInCategory("INTELLIGENCE") )then
+	for _,u in units.Get(categories.AIR) do
+		if(u:IsInCategory("INTELLIGENCE") )then
 			if(u:IsIdle())then
 				table.insert(runtimeConfig.unitsToSelect, u)
 			end

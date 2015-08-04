@@ -46,9 +46,9 @@ function triggerNotification(savedConfig)
 	runtimeConfig.unitsToSelect = {}
 
 	-- add all new existing factories
-	for _,u in units.Get() do
+	for _,u in units.Get(categories.MASSEXTRACTION) do
 		if not u:IsDead() then
-			if(u:IsInCategory("MASSEXTRACTION") and u:IsInCategory("STRUCTURE"))then
+			if(u:IsInCategory("STRUCTURE"))then
 				if(allExtractors[u:GetEntityId()] == nil) then
 					allExtractors[u:GetEntityId()] = {unit = u, position = u:GetPosition()}
 				end
