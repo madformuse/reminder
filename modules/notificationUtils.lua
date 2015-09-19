@@ -76,8 +76,10 @@ function getLowestTechUnitsInGroup(group)
 	local lowestTechUnits = {}
 	for _, c in cats do
 		for _, u in group or {} do
-			if u:IsInCategory(c) then
-				table.insert(lowestTechUnits, u)
+			if not u:IsDead() then
+				if u:IsInCategory(c) then
+					table.insert(lowestTechUnits, u)
+				end
 			end
 		end
 		if table.getn(lowestTechUnits) > 0 then
